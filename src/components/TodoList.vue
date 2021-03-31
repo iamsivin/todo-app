@@ -37,7 +37,6 @@ export default {
       this.$store.dispatch("editTodo", todo.id);
     },
     updateTodo: function(taskId) {
-      console.log("update", taskId);
       this.$store.dispatch("updateTodo", { taskId, task: this.updateTask });
     },
     deleteTodo: function(id) {
@@ -92,7 +91,6 @@ export default {
 .delete {
   color: #d22;
   float: right;
-  padding: 0.1rem;
   width: 5rem;
   height: 1.25rem;
   cursor: pointer;
@@ -103,7 +101,6 @@ export default {
   color: rgb(196, 161, 7);
   float: right;
   margin-left: 2rem;
-  padding: 0.1rem;
   width: 5rem;
   cursor: pointer;
   text-align: center;

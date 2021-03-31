@@ -21,7 +21,6 @@ export default new Vuex.Store({
         task: payload.task,
         isEdit: payload.isEdit,
       };
-      console.log(newTask);
       state.todos.unshift(newTask);
     },
 
@@ -40,7 +39,6 @@ export default new Vuex.Store({
     },
 
     UPDATE_TODO: (state, payload) => {
-      console.log("UPDATE_TODO", payload);
       const updatedTodos = state.todos.map((todo) => {
         if (payload.taskId === todo.id) {
           return {
@@ -52,7 +50,6 @@ export default new Vuex.Store({
         return todo;
       });
       state.todos = updatedTodos;
-      console.log(updatedTodos);
     },
 
     DELETE_TODO: (state, payload) => {
