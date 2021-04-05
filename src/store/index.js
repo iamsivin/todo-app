@@ -20,8 +20,14 @@ export default new Vuex.Store({
         id: payload.newId,
         task: payload.task,
         isEdit: payload.isEdit,
+        completed: false,
       };
       state.todos.unshift(newTask);
+    },
+
+    CHECKED_TODO: (state, payload) => {
+      const checkedTask = state.todos.find((todo) => todo.id === payload);
+      checkedTask.completed = !checkedTask.completed;
     },
 
     EDIT_TODO: (state, payload) => {
@@ -61,6 +67,9 @@ export default new Vuex.Store({
   actions: {
     addTodo: (context, payload) => {
       context.commit("ADD_TODO", payload);
+    },
+    checkedTodo: (context, payload) => {
+      context.commit("CHECKED_TODO", payload);
     },
     editTodo(context, payload) {
       context.commit("EDIT_TODO", payload);

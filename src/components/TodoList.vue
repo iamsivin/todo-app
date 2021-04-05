@@ -1,19 +1,29 @@
 <template>
   <ul class="tasks">
-    <li v-for="todo in todos" :key="todo.id" class="task">
+    <li
+      v-for="todo in todos"
+      :key="todo.id"
+      class="task"
+      :class="{ completed: todo.completed }"
+    >
+      <span class="delete" @click="deleteTodo(todo.id)">
+        <ion-icon name="trash-outline"></ion-icon>
+      </span>
+      <span class="update-edit" v-if="!todo.isEdit" @click="editTodo(todo)">
+        <ion-icon name="create-outline"></ion-icon>
+      </span>
       <span class="id">{{ todo.id }}. </span>
-      <span class="task-result" v-if="!todo.isEdit">
+      <span class="task-result" @click="checkedTodo(todo)" v-if="!todo.isEdit">
         {{ todo.task }}
       </span>
       <input v-if="todo.isEdit" v-model="updateTask" class="update-input" />
-      <span class="delete" @click="deleteTodo(todo.id)">
-        <ion-icon name="trash-outline"></ion-icon> Delete
-      </span>
-      <span class="update-edit" v-if="!todo.isEdit" @click="editTodo(todo)">
-        <ion-icon name="create-outline"></ion-icon> Edit
-      </span>
-      <span class="update-edit" v-if="todo.isEdit" @click="updateTodo(todo.id)">
-        <ion-icon name="checkmark-done-circle-outline"></ion-icon> Update
+      <span
+        class="update-edit"
+        v-if="todo.isEdit"
+        v-on:keyup.enter="updateTodo()"
+        @click="updateTodo(todo.id)"
+      >
+        <ion-icon name="checkmark-done-circle-outline"></ion-icon>
       </span>
     </li>
   </ul>
@@ -32,6 +42,9 @@ export default {
     },
   },
   methods: {
+    checkedTodo: function(todo) {
+      this.$store.dispatch("checkedTodo", todo.id);
+    },
     editTodo: function(todo) {
       this.updateTask = todo.task;
       this.$store.dispatch("editTodo", todo.id);
@@ -72,14 +85,12 @@ export default {
 
 .id {
   float: left;
-}
-
-.task-result {
-  width: 60px;
+  font-size: 1rem;
+  margin-right: 0.2rem;
 }
 
 .update-input {
-  width: 60%;
+  width: 75%;
   border: 0.3px solid rgb(227, 227, 227);
   padding: 0.1rem;
   color: #41a7c9;
@@ -91,7 +102,8 @@ export default {
 .delete {
   color: #d22;
   float: right;
-  width: 5rem;
+  width: 2rem;
+  font-size: 1.5rem;
   height: 1.25rem;
   cursor: pointer;
   text-align: center;
@@ -100,9 +112,16 @@ export default {
 .update-edit {
   color: rgb(196, 161, 7);
   float: right;
-  margin-left: 2rem;
-  width: 5rem;
+  margin-left: 0.2rem;
+  width: 2rem;
+  font-size: 1.5rem;
   cursor: pointer;
   text-align: center;
+}
+
+.completed {
+  text-decoration: line-through;
+  text-decoration-thickness: 2px;
+  text-decoration-color: #e12c2c;
 }
 </style>
