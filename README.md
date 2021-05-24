@@ -1,24 +1,4 @@
-# todo-app
+# Todo-app
 
-## Project setup
-```
-yarn install
-```
 
-### Compiles and hot-reloads for development
-```
-yarn serve
-```
-
-### Compiles and minifies for production
-```
-yarn build
-```
-
-### Lints and fixes files
-```
-yarn lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+<img src="https://user-images.githubusercontent.com/64252451/119336568-71d2c500-bcab-11eb-930a-afc42cbc145c.png" width="500px">
