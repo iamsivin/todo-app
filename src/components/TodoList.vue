@@ -42,17 +42,17 @@ export default {
     },
   },
   methods: {
-    checkedTodo: function(todo) {
+    checkedTodo(todo) {
       this.$store.dispatch("checkedTodo", todo.id);
     },
-    editTodo: function(todo) {
+    editTodo(todo) {
       this.updateTask = todo.task;
       this.$store.dispatch("editTodo", todo.id);
     },
-    updateTodo: function(taskId) {
+    updateTodo(taskId) {
       this.$store.dispatch("updateTodo", { taskId, task: this.updateTask });
     },
-    deleteTodo: function(id) {
+    deleteTodo(id) {
       this.$store.dispatch("deleteTodo", id);
     },
   },
@@ -107,6 +107,11 @@ export default {
   height: 1.25rem;
   cursor: pointer;
   text-align: center;
+}
+
+.task-result {
+  display: flex;
+  text-align: start;
 }
 
 .update-edit {

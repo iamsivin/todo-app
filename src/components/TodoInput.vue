@@ -27,7 +27,7 @@ export default {
     };
   },
   methods: {
-    addTodo: function() {
+    addTodo() {
       if (this.task !== "") {
         this.$store.dispatch("addTodo", this);
         this.newId++;
